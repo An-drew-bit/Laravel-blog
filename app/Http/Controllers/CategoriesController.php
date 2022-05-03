@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use AWS\CRT\HTTP\Request;
 use App\Models\{Category};
-use Illuminate\Http\Request;
 
 class CategoriesController extends Controller
 {

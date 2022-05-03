@@ -1,12 +1,18 @@
 <?php
 
-use App\Http\Controllers\{AboutController, CategoriesController, ContactController,
-    HomeController, PostsController, TagsController, UserController, SearchController};
-use App\Http\Controllers\Admin\{CommentController, CategoryController, TagController, PostController, MainController};
+use App\Http\Controllers\{
+    AboutController, CategoriesController, ContactController,
+    HomeController, PostsController, TagsController,
+    UserController, SearchController
+};
+use App\Http\Controllers\Admin\{
+    CommentController, CategoryController, TagController,
+    PostController, MainController
+};
 use Illuminate\Support\Facades\Route;
 
 
-Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/', HomeController::class)->name('home');
 
 Route::get('/article/{slug}', [PostsController::class, 'index'])->name('posts.single');
 Route::get('/category/{slug}', [CategoriesController::class, 'index'])->name('categories.single');

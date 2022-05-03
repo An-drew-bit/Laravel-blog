@@ -18,8 +18,6 @@ class CommentController extends Controller
 
     public function store(Request $request)
     {
-        //dd($request->all());
-
         $comment = Comment::create([
             'user_id' => Auth::id(),
             'post_id'=> $request->input('post_id'),

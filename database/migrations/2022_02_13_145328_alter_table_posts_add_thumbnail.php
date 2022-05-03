@@ -6,19 +6,19 @@ use Illuminate\Support\Facades\Schema;
 
 class AlterTablePostsAddThumbnail extends Migration
 {
-
     public function up()
     {
         Schema::table('posts', function (Blueprint $table) {
-            $table->string('thumbnail_small')->after('thumbnail_400');
+            $table->string('thumbnail_400')
+                ->after('thumbnail')
+                ->nullable();
         });
     }
-
 
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('thumbnail_small');
+            $table->dropColumn('thumbnail_400');
         });
     }
 }

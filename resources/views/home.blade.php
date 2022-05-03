@@ -28,10 +28,10 @@
                                         <li>June 02, 2018</li>
                                     </ul>
                                 </div>
-                            </div> <!-- end entry__content -->
+                            </div>
 
-                        </div> <!-- end entry -->
-                    </div> <!-- end featured__slide -->
+                        </div>
+                    </div>
 
                     <div class="featured__slide">
 
@@ -81,15 +81,15 @@
                                         <li>June 12, 2018</li>
                                     </ul>
                                 </div>
-                            </div> <!-- end entry__content -->
+                            </div>
 
-                        </div> <!-- end entry -->
+                        </div>
 
-                    </div> <!-- end featured__slide -->
+                    </div>
 
-                </div> <!-- end featured -->
+                </div>
 
-            </div> <!-- end col-full -->
+            </div>
         </div>
     </section>
 
@@ -113,10 +113,10 @@
                                     <a href="{{ route('categories.single', ['slug' => $post->category->slug]) }}">{{ $post->category->title }}</a>
                                 </div>
 
-                                <h1 class="item-entry__title"><a href="single-standard.html">{!! $post->desc !!}</a></h1>
+                                <h1 class="item-entry__title"><a href="#">{!! $post->desc !!}</a></h1>
 
                                 <div class="item-entry__date">
-                                    <a href="single-standard.html">
+                                    <a href="#">
                                         {{ $post->getPostDate() }}
                                     </a>
                                 </div>
