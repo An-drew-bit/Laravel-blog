@@ -77,17 +77,17 @@
                         <li><a href="{{ route('standart') }}">Standard Post</a></li>
                     </ul>
                 </li>
-            @endauth
-
-            <li><a href="{{ route('about') }}" title="">About</a></li>
-            <li><a href="{{ route('contact') }}" title="">Contact</a></li>
-
-            @if(Auth::check())
+                
                 <li class="li_margin"><a href="{{ route('logout') }}" title="">Выйти</a></li>
-            @else
+            @endauth
+            
+            @guest
+                <li><a href="{{ route('about') }}" title="">About</a></li>
+                <li><a href="{{ route('contact') }}" title="">Contact</a></li>
+                
                 <li class="li_margin"><a href="{{ route('login.create') }}" title="">Войти</a></li>
-                <li><a href="{{ route('register.create') }}" title="">Регистрация</a></li>
-            @endif
+                <li><a href="{{ route('register.create') }}" title="">Регистрация</a></li
+            @endguest
         </ul>
 
         <a href="#0" title="Close Menu" class="header__overlay-close close-mobile-menu">Close</a>
