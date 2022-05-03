@@ -30,10 +30,9 @@ Route::get('/standart', function () {
     return view('front.posts.standart');
 })->name('standart');
 
-Route::get('/search', [SearchController::class, 'index'])->name('search');
-
-Route::get('/about', [AboutController::class, 'index'])->name('about');
-Route::get('/contact', [ContactController::class, 'index'])->name('contact');
+Route::get('/search', SearchController::class)->name('search');
+Route::get('/about', AboutController::class)->name('about');
+Route::get('/contact', ContactController::class)->name('contact');
 
 Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
     Route::get('/', [MainController::class, 'index'])->name('admin.index');

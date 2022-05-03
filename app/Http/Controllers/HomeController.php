@@ -9,7 +9,7 @@ class HomeController extends Controller
     public function __invoke()
     {
         $posts = Post::with('category')
-            ->orderBy('created_at', 'desc')
+            ->orderByDesc('created_at')
             ->paginate(12);
 
         return view('home', compact('posts'));
