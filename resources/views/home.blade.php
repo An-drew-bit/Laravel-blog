@@ -15,7 +15,7 @@
                             <div class="entry__background" style="background-image:url('{{ asset('assets/front/images/thumbs/featured/featured-guitarman.jpg') }}');"></div>
 
                             <div class="entry__content">
-                                <span class="entry__category"><a href="#0">Music</a></span>
+                                <span class="entry__category"><a href="#">Music</a></span>
 
                                 <h1><a href="#0" title="">What Your Music Preference Says About You and Your Personality.</a></h1>
 
@@ -24,7 +24,7 @@
                                         <img class="avatar" src="{{ asset('assets/front/images/avatars/user-05.jpg') }}" alt="">
                                     </a>
                                     <ul class="entry__meta">
-                                        <li><a href="#0">Jonathan Smith</a></li>
+                                        <li><a href="#">Jonathan Smith</a></li>
                                         <li>June 02, 2018</li>
                                     </ul>
                                 </div>
@@ -50,15 +50,15 @@
                                     </a>
 
                                     <ul class="entry__meta">
-                                        <li><a href="#0">John Doe</a></li>
+                                        <li><a href="#">John Doe</a></li>
                                         <li>June 13, 2018</li>
                                     </ul>
                                 </div>
-                            </div> <!-- end entry__content -->
+                            </div>
 
-                        </div> <!-- end entry -->
+                        </div>
 
-                    </div> <!-- end featured__slide -->
+                    </div>
 
                     <div class="featured__slide">
 
@@ -69,15 +69,15 @@
                             <div class="entry__content">
                                 <span class="entry__category"><a href="#0">LifeStyle</a></span>
 
-                                <h1><a href="#0" title="">The difference between Classics, Vintage & Antique Cars.</a></h1>
+                                <h1><a href="#" title="">The difference between Classics, Vintage & Antique Cars.</a></h1>
 
                                 <div class="entry__info">
-                                    <a href="#0" class="entry__profile-pic">
+                                    <a href="#" class="entry__profile-pic">
                                         <img class="avatar" src="{{ asset('assets/front/images/avatars/user-03.jpg') }}" alt="">
                                     </a>
 
                                     <ul class="entry__meta">
-                                        <li><a href="#0">John Doe</a></li>
+                                        <li><a href="#">John Doe</a></li>
                                         <li>June 12, 2018</li>
                                     </ul>
                                 </div>
