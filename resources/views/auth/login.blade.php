@@ -15,7 +15,8 @@
                     @csrf
 
                     <div class="input-group mb-3">
-                        <input type="email" name="email" class="form-control" placeholder="Email">
+                        <input type="email" name="email" class="form-control @error('email') is-invalid @enderror"
+                               placeholder="Email">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-envelope"></span>
@@ -23,7 +24,8 @@
                         </div>
                     </div>
                     <div class="input-group mb-3">
-                        <input type="password" name="password" class="form-control" placeholder="Password">
+                        <input type="password" name="password" class="form-control @error('password') is-invalid @enderror"
+                               placeholder="Password">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-lock"></span>
@@ -38,7 +40,7 @@
                 </form>
 
                 <p class="mb-1">
-                    <a href="">Я забыл мой пароль</a>
+                    <a href="{{ route('forgot.show') }}">Я забыл мой пароль</a>
                 </p>
                 <p class="mb-0">
                     <a href="{{ route('register.create') }}" class="text-center">Зарегистрируйте новый аккаунт</a>

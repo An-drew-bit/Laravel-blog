@@ -26,7 +26,7 @@
                 <h3 class="card-title">Список категорий</h3>
             </div>
             <div class="card-body">
-                <a href="{{ route('categories.create') }}" class="btn btn-primary mb-3">Добавить категорию</a>
+                <a href="{{ route('admin.category.create') }}" class="btn btn-primary mb-3">Добавить категорию</a>
                 @if (count($categories))
                     <div class="table-responsive">
                         <table class="table table-bordered">
@@ -45,12 +45,12 @@
                                     <td>{{ $category->title }}</td>
                                     <td>{{ $category->slug }}</td>
                                     <td>
-                                        <a href="{{ route('categories.edit', ['category' => $category->id]) }}"
+                                        <a href="{{ route('admin.category.edit', ['category' => $category->id]) }}"
                                            class="btn btn-info btn-sm float-left mr-1">
                                             <i class="fas fa-pencil-alt"></i>
                                         </a>
 
-                                        <form action="{{ route('categories.destroy', ['category' => $category->id]) }}"
+                                        <form action="{{ route('admin.category.destroy', ['category' => $category->id]) }}"
                                               method="post" class="float-left">
                                             @csrf
                                             @method('DELETE')

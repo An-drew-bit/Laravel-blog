@@ -23,7 +23,7 @@
             <div class="card-header">
                 <h3 class="card-title">Создать</h3>
             </div>
-            <form role="form" method="post" action="{{ route('categories.store') }}">
+            <form role="form" method="post" action="{{ route('admin.category.store') }}">
                 @csrf
                 <div class="card-body">
                     <div class="form-group">

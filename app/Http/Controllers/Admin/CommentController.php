@@ -3,34 +3,21 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\{Comment};
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use App\Queries\Admin\CommentBuilder;
 
 class CommentController extends Controller
 {
-    public function index()
+    public function index(CommentBuilder $builder)
     {
-        $comments = Comment::all();
-
-        return view('admin.comments.index', compact('comments'));
-    }
-
-    public function store(Request $request)
-    {
-        Comment::create([
-            'user_id' => Auth::id(),
-            'post_id'=> $request->input('post_id'),
-            'title' => $request->input('title'),
-            'comment' => $request->input('comment'),
+        return view('admin.comments.index', [
+            'comments' => $builder->getCommentRelation(),
         ]);
-
-        return redirect()->back()->with('success','Комментарий добавлен');
     }
 
-    public function destroy($id)
+    public function destroy(CommentBuilder $builder, int $id)
     {
-        $comment = Comment::find($id);
+        $comment = $builder->getCommentById($id);
+
         $comment->delete();
 
         return redirect()->route('comments.index')->with('success',"Комментарий удален!");
