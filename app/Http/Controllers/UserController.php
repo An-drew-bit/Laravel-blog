@@ -54,7 +54,6 @@ class UserController extends Controller
         }
 
         return redirect()->back()->with('error', 'Не привильно введен Логин или Пароль');
-
     }
 
     public function logout()

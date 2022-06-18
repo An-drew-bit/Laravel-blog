@@ -17,8 +17,6 @@ class AlterTablePostsAddThumnainSmall extends Migration
 
     public function down()
     {
-        Schema::table('posts', function (Blueprint $table) {
-            $table->dropColumn('thumbnail_small');
-        });
+        Schema::dropIfExists('posts');
     }
 }
