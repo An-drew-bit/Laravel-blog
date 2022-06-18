@@ -4,11 +4,9 @@ namespace App\Jobs;
 
 use App\Mail\ForgotPassword;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldBeUnique;
-use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Contracts\Queue\{ShouldQueue, ShouldBeUnique};
 use Illuminate\Foundation\Bus\Dispatchable;
-use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Queue\SerializesModels;
+use Illuminate\Queue\{InteractsWithQueue, SerializesModels};
 use Illuminate\Support\Facades\Mail;
 
 class ForgotUserEmailJob implements ShouldQueue

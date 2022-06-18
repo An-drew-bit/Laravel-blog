@@ -203,13 +203,13 @@
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="{{ route('categories.index') }}" class="nav-link">
+                                <a href="{{ route('admin.category.index') }}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Список категорий</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ route('categories.create') }}" class="nav-link">
+                                <a href="{{ route('admin.category.create') }}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Новая категория</p>
                                 </a>
@@ -227,13 +227,13 @@
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="{{ route('tags.index') }}" class="nav-link">
+                                <a href="{{ route('admin.tags.index') }}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Список тегов</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ route('tags.create') }}" class="nav-link">
+                                <a href="{{ route('admin.tags.create') }}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Новый тег</p>
                                 </a>
@@ -251,13 +251,13 @@
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="{{ route('posts.index') }}" class="nav-link">
+                                <a href="{{ route('admin.posts.index') }}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Список статей</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ route('posts.create') }}" class="nav-link">
+                                <a href="{{ route('admin.posts.create') }}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Новая статья</p>
                                 </a>
@@ -275,7 +275,7 @@
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="{{ route('comments.index') }}" class="nav-link">
+                                <a href="{{ route('admin.comments.index') }}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Список коментариев</p>
                                 </a>
@@ -321,9 +321,6 @@
     </div>
 
     <footer class="main-footer">
-        <div class="float-right d-none d-sm-block">
-            <b>Version</b> 3.2.0-rc
-        </div>
         <strong>Copyright &copy; {{ date('Y') }} <a href="https://github.com/An-drew-bit">by Andrew
                 Makarov</a>.</strong> All rights reserved.
     </footer>

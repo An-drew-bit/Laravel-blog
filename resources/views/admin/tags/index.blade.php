@@ -26,7 +26,7 @@
                 <h3 class="card-title">Список тегов</h3>
             </div>
             <div class="card-body">
-                <a href="{{ route('tags.create') }}" class="btn btn-primary mb-3">Добавить тег</a>
+                <a href="{{ route('admin.tags.create') }}" class="btn btn-primary mb-3">Добавить тег</a>
                 @if (count($tags))
                     <div class="table-responsive">
                         <table class="table table-bordered">
@@ -45,12 +45,12 @@
                                     <td>{{ $tag->title }}</td>
                                     <td>{{ $tag->slug }}</td>
                                     <td>
-                                        <a href="{{ route('tags.edit', ['tag' => $tag]) }}"
+                                        <a href="{{ route('admin.tags.edit', ['tag' => $tag]) }}"
                                            class="btn btn-info btn-sm float-left mr-1">
                                             <i class="fas fa-pencil-alt"></i>
                                         </a>
 
-                                        <form action="{{ route('tags.destroy', ['tag' => $tag]) }}"
+                                        <form action="{{ route('admin.tags.destroy', ['tag' => $tag]) }}"
                                               method="post" class="float-left">
                                             @csrf
                                             @method('DELETE')

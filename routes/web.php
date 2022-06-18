@@ -36,10 +36,15 @@ Route::get('/contact', ContactController::class)->name('contact');
 
 Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
     Route::get('/', MainController::class)->name('admin.index');
-    Route::resource('/categories', CategoryController::class);
-    Route::resource('/tags', TagController::class);
-    Route::resource('/posts', PostController::class);
-    Route::resource('/comments', CommentController::class);
+
+    Route::resource('/categories', CategoryController::class)
+        ->names('admin.category');
+    Route::resource('/tags', TagController::class)
+        ->names('admin.tags');
+    Route::resource('/posts', PostController::class)
+        ->names('admin.posts');
+    Route::resource('/comments', CommentController::class)
+        ->names('admin.comments');
 });
 
 Route::group(['middleware' => 'auth'], function () {

@@ -24,7 +24,7 @@
                         </div>
                     </div>
                     <div class="input-group mb-3">
-                        <input type="password" name="password" class="form-control @error('Password') is-invalid @enderror"
+                        <input type="password" name="password" class="form-control @error('password') is-invalid @enderror"
                                placeholder="Password">
                         <div class="input-group-append">
                             <div class="input-group-text">

@@ -43,10 +43,10 @@
                                 <tr>
                                     <td>{{ $comment->id }}</td>
                                     <td>{{ $comment->title }}</td>
-                                    <td>{{ \App\Models\User::find($comment->user_id)->name }}</td>
-                                    <td>{{ \App\Models\Post::where('id','=',$comment->post_id)->pluck('title')->first()}} </td>
+                                    <td>{{ $comment->user->name }}</td>
+                                    <td>{{ $comment->post->title }}</td>
                                     <td>
-                                        <form action="{{ route('comments.destroy', ['comment' => $comment->id]) }}"
+                                        <form action="{{ route('admin.comments.destroy', ['comment' => $comment->id]) }}"
                                               method="post" class="float-left">
                                             @csrf
                                             @method('DELETE')
@@ -68,7 +68,7 @@
             </div>
 
             <div class="card-footer clearfix">
-                {{-- $comments->links() --}}
+                {{ $comments->links() }}
             </div>
         </div>
 
