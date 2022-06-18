@@ -20,6 +20,6 @@ class CommentController extends Controller
 
         $comment->delete();
 
-        return redirect()->route('comments.index')->with('success',"Комментарий удален!");
+        return redirect()->route('admin.comments.index')->with('success',"Комментарий удален!");
     }
 }

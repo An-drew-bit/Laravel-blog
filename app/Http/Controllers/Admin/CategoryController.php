@@ -24,7 +24,7 @@ class CategoryController extends Controller
     {
         $builder->createCategory($request->validated());
 
-        return redirect()->route('categories.index')->with('success', 'Категория добавлена');
+        return redirect()->route('admin.category.index')->with('success', 'Категория добавлена');
     }
 
     public function edit(int $id, CategoryBuilder $builder)
@@ -40,7 +40,7 @@ class CategoryController extends Controller
 
         $category->update($request->validated());
 
-        return redirect()->route('categories.index')->with('success', 'Изменения сохранены');
+        return redirect()->route('admin.category.index')->with('success', 'Изменения сохранены');
     }
 
     public function destroy(CategoryBuilder $builder, int $id)
@@ -48,11 +48,11 @@ class CategoryController extends Controller
         $category = $builder->getCategoryById($id);
 
         if ($category->posts->count()) {
-            return redirect()->route('categories.index')->with('error', 'Ошибка, у категории есть записи');
+            return redirect()->route('admin.category.index')->with('error', 'Ошибка, у категории есть записи');
         }
 
         $category->delete();
 
-        return redirect()->route('categories.index')->with('success', 'Категория успешно удалена');
+        return redirect()->route('admin.category.index')->with('success', 'Категория успешно удалена');
     }
 }

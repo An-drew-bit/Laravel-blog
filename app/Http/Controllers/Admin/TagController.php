@@ -24,7 +24,7 @@ class TagController extends Controller
     {
         $builder->createTag($request->validated());
 
-        return redirect()->route('tags.index')->with('success', 'Тег добавлен');
+        return redirect()->route('admin.tags.index')->with('success', 'Тег добавлен');
     }
 
     public function edit(TagBuilder $builder, int $id)
@@ -40,7 +40,7 @@ class TagController extends Controller
 
         $tag->update($request->validated());
 
-        return redirect()->route('tags.index')->with('success', 'Изменения сохранены');
+        return redirect()->route('admin.tags.index')->with('success', 'Изменения сохранены');
     }
 
     public function destroy(TagBuilder $builder, int $id)
@@ -48,11 +48,11 @@ class TagController extends Controller
         $tag = $builder->getTagById($id);
 
         if ($tag->posts->count()) {
-            return redirect()->route('tags.index')->with('error', 'Ошибка, у тега есть записи');
+            return redirect()->route('admin.tags.index')->with('error', 'Ошибка, у тега есть записи');
         }
 
         $tag->delete();
 
-        return redirect()->route('tags.index')->with('success', 'Тег успешно удален');
+        return redirect()->route('admin.tags.index')->with('success', 'Тег успешно удален');
     }
 }

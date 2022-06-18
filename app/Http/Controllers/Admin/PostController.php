@@ -29,7 +29,7 @@ class PostController extends Controller
         $post = $builder->createPost($request->validated());
         $post->tags()->sync($request->tags);
 
-        return redirect()->route('posts.index')->with('success', 'Статья добавлена');
+        return redirect()->route('admin.posts.index')->with('success', 'Статья добавлена');
     }
 
     public function edit(PostBuilder $builder, int $id)
@@ -48,7 +48,7 @@ class PostController extends Controller
         $post->update($request->validated());
         $post->tags()->sync($request->tags);
 
-        return redirect()->route('posts.index')->with('success', 'Изменения сохранены');
+        return redirect()->route('admin.posts.index')->with('success', 'Изменения сохранены');
     }
 
     public function destroy(PostBuilder $builder, int $id)
@@ -58,6 +58,6 @@ class PostController extends Controller
 
         $post->delete();
 
-        return redirect()->route('posts.index')->with('success', 'Статья удалена');
+        return redirect()->route('admin.posts.index')->with('success', 'Статья удалена');
     }
 }
