@@ -2,9 +2,9 @@
 
 namespace App\Providers;
 
-use App\Models\{Category, Post};
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Pagination\Paginator;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rules\Password;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -28,15 +28,13 @@ class AppServiceProvider extends ServiceProvider
     {
         Paginator::useBootstrap();
 
-        view()->composer('admin.layouts.layout', function ($view) {
-            $view->with('name', Auth::user());
+        Password::defaults(function () {
+            return Password::min(8)
+                ->letters()
+                ->uncompromised()
+                ->numbers();
         });
 
-        view()->composer('front.layouts.layout', function ($view) {
-            $view->with([
-                'posts' => Post::orderBy('view', 'desc')->limit(6)->get(),
-                'categories' => Category::all()->where('slug'),
-            ]);
-        });
+        Model::preventLazyLoading(!app()->isProduction());
     }
 }

@@ -1,4 +1,4 @@
-@extends('user.layouts.layout')
+@extends('auth.layouts.layout')
 
 @section('content')
     <div class="register-box">

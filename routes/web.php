@@ -3,14 +3,14 @@
 use App\Http\Controllers\{
     AboutController, CategoriesController, ContactController,
     HomeController, PostsController, TagsController,
-    UserController, SearchController
+    SearchController
 };
+use App\Http\Controllers\Auth\{AuthController, RegisterController};
 use App\Http\Controllers\Admin\{
     CommentController, CategoryController, TagController,
     PostController, MainController
 };
 use Illuminate\Support\Facades\Route;
-
 
 Route::get('/', HomeController::class)->name('home');
 
@@ -34,7 +34,7 @@ Route::get('/search', SearchController::class)->name('search');
 Route::get('/about', AboutController::class)->name('about');
 Route::get('/contact', ContactController::class)->name('contact');
 
-Route::group(['prefix' => 'admin'], function () {
+Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
     Route::get('/', [MainController::class, 'index'])->name('admin.index');
     Route::resource('/categories', CategoryController::class);
     Route::resource('/tags', TagController::class);
@@ -44,13 +44,17 @@ Route::group(['prefix' => 'admin'], function () {
 
 Route::group(['middleware' => 'auth'], function () {
     Route::resource('/comments', CommentController::class);
-    Route::get('/logout', [UserController::class, 'logout'])->name('logout');
+    Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 });
 
 Route::group(['middleware' => 'guest'], function () {
-    Route::get('/register', [UserController::class, 'showRegisterForm'])->name('register.create');
-    Route::post('/register', [UserController::class, 'store'])->name('register.store');
-    Route::get('/login', [UserController::class, 'showLoginForm'])->name('login.create');
-    Route::post('/login', [UserController::class, 'login'])->name('login');
-});
+    Route::controller(RegisterController::class)->group(function () {
+        Route::get('/register', 'showRegisterForm')->name('register.create');
+        Route::post('/register', 'createUser')->name('register.store');
+    });
 
+    Route::controller(AuthController::class)->group(function () {
+        Route::get('/login', 'showLoginForm')->name('login.create');
+        Route::post('/login', 'login')->name('login');
+    });
+});
