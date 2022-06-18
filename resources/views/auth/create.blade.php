@@ -17,7 +17,8 @@
                     @csrf
 
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" name="name" placeholder="Имя" value="{{ old('name') }}">
+                        <input type="text" class="form-control @error('name') is-invalid @enderror"
+                               name="name" placeholder="Имя" value="{{ old('name') }}">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-user"></span>
@@ -26,7 +27,8 @@
                     </div>
 
                     <div class="input-group mb-3">
-                        <input type="email" class="form-control" name="email" placeholder="Email"
+                        <input type="email" class="form-control @error('email') is-invalid @enderror"
+                               name="email" placeholder="Email"
                                value="{{ old('email') }}">
                         <div class="input-group-append">
                             <div class="input-group-text">
@@ -36,7 +38,8 @@
                     </div>
 
                     <div class="input-group mb-3">
-                        <input type="password" class="form-control" name="password" placeholder="Пароль">
+                        <input type="password" class="form-control @error('password') is-invalid @enderror"
+                               name="password" placeholder="Пароль">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-lock"></span>
@@ -45,7 +48,8 @@
                     </div>
 
                     <div class="input-group mb-3">
-                        <input type="password" name="password_confirmation" class="form-control"
+                        <input type="password" name="password_confirmation"
+                               class="form-control @error('password_confirmation') is-invalid @enderror"
                                placeholder="Повторите пароль">
                         <div class="input-group-append">
                             <div class="input-group-text">

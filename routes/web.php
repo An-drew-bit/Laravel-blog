@@ -5,7 +5,7 @@ use App\Http\Controllers\{
     HomeController, PostsController, TagsController,
     SearchController
 };
-use App\Http\Controllers\Auth\{AuthController, RegisterController};
+use App\Http\Controllers\Auth\{AuthController, ForgotController, RegisterController};
 use App\Http\Controllers\Admin\{
     CommentController, CategoryController, TagController,
     PostController, MainController
@@ -35,7 +35,7 @@ Route::get('/about', AboutController::class)->name('about');
 Route::get('/contact', ContactController::class)->name('contact');
 
 Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
-    Route::get('/', [MainController::class, 'index'])->name('admin.index');
+    Route::get('/', MainController::class)->name('admin.index');
     Route::resource('/categories', CategoryController::class);
     Route::resource('/tags', TagController::class);
     Route::resource('/posts', PostController::class);
@@ -56,5 +56,10 @@ Route::group(['middleware' => 'guest'], function () {
     Route::controller(AuthController::class)->group(function () {
         Route::get('/login', 'showLoginForm')->name('login.create');
         Route::post('/login', 'login')->name('login');
+    });
+
+    Route::controller(ForgotController::class)->group(function () {
+        Route::get('/forgot', 'showForgotForm')->name('forgot.show');
+        Route::post('/forgot', 'forgot')->name('forgot');
     });
 });

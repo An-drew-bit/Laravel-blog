@@ -3,57 +3,49 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Category;
-use Illuminate\Http\Request;
+use App\Http\Requests\Admin\CategoryRequest;
+use App\Queries\Admin\CategoryBuilder;
 
 class CategoryController extends Controller
 {
-    public function index()
+    public function index(CategoryBuilder $builder)
     {
-        $categories = Category::paginate(10);
-
-        return view('admin.categories.index', compact('categories'));
+        return view('admin.categories.index', [
+            'categories' => $builder->getCategoryAll()
+        ]);
     }
 
     public function create()
     {
-
         return view('admin.categories.create');
     }
 
-    public function store(Request $request)
+    public function store(CategoryRequest $request, CategoryBuilder $builder)
     {
-        $request->validate([
-            'title' => 'required',
-        ]);
-
-        Category::create($request->all());
+        $builder->createCategory($request->validated());
 
         return redirect()->route('categories.index')->with('success', 'Категория добавлена');
     }
 
-    public function edit($id)
+    public function edit(int $id, CategoryBuilder $builder)
     {
-        $category = Category::find($id);
-
-        return view('admin.categories.edit', compact('category'));
+        return view('admin.categories.edit', [
+            'category' => $builder->getCategoryById($id)
+        ]);
     }
 
-    public function update(Request $request, $id)
+    public function update(CategoryRequest $request, CategoryBuilder $builder, int $id)
     {
-        $request->validate([
-            'title' => 'required',
-        ]);
+        $category = $builder->getCategoryById($id);
 
-        $category = Category::find($id);
-        $category->update($request->all());
+        $category->update($request->validated());
 
         return redirect()->route('categories.index')->with('success', 'Изменения сохранены');
     }
 
-    public function destroy($id)
+    public function destroy(CategoryBuilder $builder, int $id)
     {
-        $category = Category::find($id);
+        $category = $builder->getCategoryById($id);
 
         if ($category->posts->count()) {
             return redirect()->route('categories.index')->with('error', 'Ошибка, у категории есть записи');

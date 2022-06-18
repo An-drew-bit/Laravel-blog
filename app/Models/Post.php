@@ -3,11 +3,9 @@
 namespace App\Models;
 
 use Carbon\Carbon;
-use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
-use Illuminate\Support\Facades\Storage;
 
 class Post extends Model
 {
@@ -38,21 +36,6 @@ class Post extends Model
                 'source' => 'title'
             ]
         ];
-    }
-
-    public static function uploadImage(Request $request, $image = null)
-    {
-        if($request->hasFile('thumbnail')) {
-            if ($image) {
-                Storage::delete($image);
-            }
-
-            $folder = date('Y-m-d');
-
-            return $request->file('thumbnail')->store("images/{$folder}");
-        }
-
-        return null;
     }
 
     public function getImage()
