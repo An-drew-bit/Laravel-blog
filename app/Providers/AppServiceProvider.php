@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Services\Contracts\Upload;
+use App\Services\UploadService;
 use App\Queries\Admin\{CategoryBuilder, CommentBuilder, PostBuilder, TagBuilder};
 use App\Queries\PostBuilder as PostFrontBuilder;
 use App\Queries\Contracts\QueryBuilder;
@@ -28,6 +30,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(QueryBuilder::class, PostFrontBuilder::class);
 
         // Services
+        $this->app->bind(Upload::class, UploadService::class);
     }
 
     /**
