@@ -27,6 +27,7 @@
             </div>
             <div class="card-body">
                 <a href="{{ route('admin.posts.create') }}" class="btn btn-primary mb-3">Добавить статью</a>
+
                 @if (count($posts))
                     <div class="table-responsive">
                         <table class="table table-bordered">
@@ -37,7 +38,7 @@
                                 <th>Категория</th>
                                 <th>Теги</th>
                                 <th>Дата</th>
-                                <th>Actions</th>
+                                <th style="width: 100px">Actions</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -49,21 +50,23 @@
                                     <td>{{ $post->tags->pluck('title')->join(', ') }}</td>
                                     <td>{{ $post->created_at }}</td>
                                     <td>
-                                        <a href="{{ route('admin.posts.edit', ['post' => $post->id]) }}"
+                                        <a href="{{ route('admin.posts.edit', ['post' => $post]) }}"
                                            class="btn btn-info btn-sm float-left mr-1">
                                             <i class="fas fa-pencil-alt"></i>
                                         </a>
 
-                                        <form action="{{ route('admin.posts.destroy', ['post' => $post->id]) }}"
-                                              method="post" class="float-left">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-danger btn-sm"
-                                                    onclick="return confirm('Подтвердите удаление')">
-                                                <i
-                                                    class="fas fa-trash-alt"></i>
-                                            </button>
-                                        </form>
+                                        @can('delete', $post)
+                                            <form action="{{ route('admin.posts.destroy', ['post' => $post]) }}"
+                                                  method="post" class="float-left">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger btn-sm"
+                                                        onclick="return confirm('Подтвердите удаление')">
+                                                    <i
+                                                        class="fas fa-trash-alt"></i>
+                                                </button>
+                                            </form>
+                                        @endcan
                                     </td>
                                 </tr>
                             @endforeach

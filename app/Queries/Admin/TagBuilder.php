@@ -19,11 +19,6 @@ class TagBuilder implements QueryBuilder
         return Tag::paginate(5);
     }
 
-    public function getTagById(int $id): Model
-    {
-        return Tag::where('id', $id)->firstOrFail();
-    }
-
     public function createTag(array $params): Model
     {
         return Tag::create($params);

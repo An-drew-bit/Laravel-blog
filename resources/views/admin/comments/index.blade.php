@@ -46,7 +46,9 @@
                                     <td>{{ $comment->user->name }}</td>
                                     <td>{{ $comment->post->title }}</td>
                                     <td>
-                                        <form action="{{ route('admin.comments.destroy', ['comment' => $comment->id]) }}"
+
+                                    @can('delete', $comment)
+                                        <form action="{{ route('admin.comments.destroy', ['comment' => $comment]) }}"
                                               method="post" class="float-left">
                                             @csrf
                                             @method('DELETE')
@@ -56,6 +58,7 @@
                                                     class="fas fa-trash-alt"></i>
                                             </button>
                                         </form>
+                                    @endcan
                                     </td>
                                 </tr>
                             @endforeach

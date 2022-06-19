@@ -27,6 +27,7 @@
             </div>
             <div class="card-body">
                 <a href="{{ route('admin.tags.create') }}" class="btn btn-primary mb-3">Добавить тег</a>
+
                 @if (count($tags))
                     <div class="table-responsive">
                         <table class="table table-bordered">
@@ -49,17 +50,18 @@
                                            class="btn btn-info btn-sm float-left mr-1">
                                             <i class="fas fa-pencil-alt"></i>
                                         </a>
-
-                                        <form action="{{ route('admin.tags.destroy', ['tag' => $tag]) }}"
-                                              method="post" class="float-left">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-danger btn-sm"
-                                                    onclick="return confirm('Подтвердите удаление')">
-                                                <i
-                                                    class="fas fa-trash-alt"></i>
-                                            </button>
-                                        </form>
+                                        @can('delete', $tag)
+                                            <form action="{{ route('admin.tags.destroy', ['tag' => $tag]) }}"
+                                                  method="post" class="float-left">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger btn-sm"
+                                                        onclick="return confirm('Подтвердите удаление')">
+                                                    <i
+                                                        class="fas fa-trash-alt"></i>
+                                                </button>
+                                            </form>
+                                        @endcan
                                     </td>
                                 </tr>
                             @endforeach

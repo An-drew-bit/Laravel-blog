@@ -23,7 +23,7 @@
             <div class="card-header">
                 <h3 class="card-title">Статья {{ $post->title }}</h3>
             </div>
-            <form role="form" method="post" action="{{ route('admin.posts.update', ['post' => $post->id]) }}" enctype="multipart/form-data">
+            <form role="form" method="post" action="{{ route('admin.posts.update', ['post' => $post]) }}" enctype="multipart/form-data">
                 @method('PUT')
                 @csrf
                 <div class="card-body">

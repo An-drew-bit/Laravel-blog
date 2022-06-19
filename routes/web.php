@@ -5,7 +5,10 @@ use App\Http\Controllers\{
     HomeController, PostsController, TagsController,
     SearchController
 };
-use App\Http\Controllers\Auth\{AuthController, ForgotController, RegisterController};
+use App\Http\Controllers\Auth\{
+    AuthController, ForgotController, RegisterController,
+    VerificationController
+};
 use App\Http\Controllers\Admin\{
     CommentController, CategoryController, TagController,
     PostController, MainController
@@ -29,6 +32,20 @@ Route::get('/audio', function () {
 Route::get('/standart', function () {
     return view('front.posts.standart');
 })->name('standart');
+
+Route::controller(VerificationController::class)->group(function () {
+    Route::get('/email/verify', 'getVerifyForm')
+        ->middleware('auth')
+        ->name('verification.notice');
+
+    Route::get('/email/verify/{id}/{hash}', 'verifycationRequest')
+        ->middleware(['auth', 'signed'])
+        ->name('verification.verify');
+
+    Route::post('/email/verification-notification', 'repeatSendToMail')
+        ->middleware(['auth', 'throttle:6,1'])
+        ->name('verification.send');
+});
 
 Route::get('/search', SearchController::class)->name('search');
 Route::get('/about', AboutController::class)->name('about');

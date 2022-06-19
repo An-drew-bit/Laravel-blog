@@ -4,10 +4,16 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\CategoryRequest;
+use App\Models\Category;
 use App\Queries\Admin\CategoryBuilder;
 
 class CategoryController extends Controller
 {
+    public function __construct()
+    {
+        $this->authorizeResource(Category::class, 'category');
+    }
+
     public function index(CategoryBuilder $builder)
     {
         return view('admin.categories.index', [
@@ -24,35 +30,31 @@ class CategoryController extends Controller
     {
         $builder->createCategory($request->validated());
 
-        return redirect()->route('admin.category.index')->with('success', 'Категория добавлена');
+        return redirect(route('admin.category.index'))->with('success', 'Категория добавлена');
     }
 
-    public function edit(int $id, CategoryBuilder $builder)
+    public function edit(Category $category)
     {
         return view('admin.categories.edit', [
-            'category' => $builder->getCategoryById($id)
+            'category' => $category
         ]);
     }
 
-    public function update(CategoryRequest $request, CategoryBuilder $builder, int $id)
+    public function update(CategoryRequest $request, Category $category)
     {
-        $category = $builder->getCategoryById($id);
-
         $category->update($request->validated());
 
-        return redirect()->route('admin.category.index')->with('success', 'Изменения сохранены');
+        return redirect(route('admin.category.index'))->with('success', 'Изменения сохранены');
     }
 
-    public function destroy(CategoryBuilder $builder, int $id)
+    public function destroy(Category $category)
     {
-        $category = $builder->getCategoryById($id);
-
         if ($category->posts->count()) {
-            return redirect()->route('admin.category.index')->with('error', 'Ошибка, у категории есть записи');
+            return redirect(route('admin.category.index'))->with('error', 'Ошибка, у категории есть записи');
         }
 
         $category->delete();
 
-        return redirect()->route('admin.category.index')->with('success', 'Категория успешно удалена');
+        return redirect(route('admin.category.index'))->with('success', 'Категория успешно удалена');
     }
 }

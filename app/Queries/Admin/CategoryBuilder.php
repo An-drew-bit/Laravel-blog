@@ -19,11 +19,6 @@ class CategoryBuilder implements QueryBuilder
         return Category::paginate(10);
     }
 
-    public function getCategoryById(int $id): Model
-    {
-        return Category::where('id', $id)->firstOrFail();
-    }
-
     public function createCategory(array $params): Model
     {
         return Category::create($params);

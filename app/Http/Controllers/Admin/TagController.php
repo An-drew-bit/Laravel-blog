@@ -4,10 +4,16 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\TagRequest;
+use App\Models\Tag;
 use App\Queries\Admin\TagBuilder;
 
 class TagController extends Controller
 {
+    public function __construct()
+    {
+        $this->authorizeResource(Tag::class, 'tag');
+    }
+
     public function index(TagBuilder $builder)
     {
         return view('admin.tags.index', [
@@ -27,26 +33,22 @@ class TagController extends Controller
         return redirect()->route('admin.tags.index')->with('success', 'Тег добавлен');
     }
 
-    public function edit(TagBuilder $builder, int $id)
+    public function edit(Tag $tag)
     {
         return view('admin.tags.edit', [
-            'tag' => $builder->getTagById($id)
+            'tag' => $tag
         ]);
     }
 
-    public function update(TagRequest $request, TagBuilder $builder, int $id)
+    public function update(TagRequest $request, Tag $tag)
     {
-        $tag = $builder->getTagById($id);
-
         $tag->update($request->validated());
 
         return redirect()->route('admin.tags.index')->with('success', 'Изменения сохранены');
     }
 
-    public function destroy(TagBuilder $builder, int $id)
+    public function destroy(Tag $tag)
     {
-        $tag = $builder->getTagById($id);
-
         if ($tag->posts->count()) {
             return redirect()->route('admin.tags.index')->with('error', 'Ошибка, у тега есть записи');
         }

@@ -27,6 +27,7 @@
             </div>
             <div class="card-body">
                 <a href="{{ route('admin.category.create') }}" class="btn btn-primary mb-3">Добавить категорию</a>
+
                 @if (count($categories))
                     <div class="table-responsive">
                         <table class="table table-bordered">
@@ -45,21 +46,22 @@
                                     <td>{{ $category->title }}</td>
                                     <td>{{ $category->slug }}</td>
                                     <td>
-                                        <a href="{{ route('admin.category.edit', ['category' => $category->id]) }}"
+                                        <a href="{{ route('admin.category.edit', ['category' => $category]) }}"
                                            class="btn btn-info btn-sm float-left mr-1">
                                             <i class="fas fa-pencil-alt"></i>
                                         </a>
-
-                                        <form action="{{ route('admin.category.destroy', ['category' => $category->id]) }}"
-                                              method="post" class="float-left">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-danger btn-sm"
-                                                    onclick="return confirm('Подтвердите удаление')">
-                                                <i
-                                                    class="fas fa-trash-alt"></i>
-                                            </button>
-                                        </form>
+                                        @can('delete', $category)
+                                            <form action="{{ route('admin.category.destroy', ['category' => $category]) }}"
+                                                  method="post" class="float-left">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger btn-sm"
+                                                        onclick="return confirm('Подтвердите удаление')">
+                                                    <i
+                                                        class="fas fa-trash-alt"></i>
+                                                </button>
+                                            </form>
+                                        @endcan
                                     </td>
                                 </tr>
                             @endforeach

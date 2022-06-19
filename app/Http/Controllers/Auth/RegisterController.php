@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\RegisterRequest;
 use App\Models\User;
+use Illuminate\Auth\Events\Registered;
 
 class RegisterController extends Controller
 {
@@ -22,12 +23,13 @@ class RegisterController extends Controller
         ]);
 
         if ($user) {
-            //event(new Registered($user));
+            event(new Registered($user));
 
             auth()->login($user);
 
-            //return to_route('verification.notice');
+            return redirect(route('verification.notice'));
         }
+
         session()->flash('success', 'Вы успешно зарегистрировались');
 
         return redirect()->home();

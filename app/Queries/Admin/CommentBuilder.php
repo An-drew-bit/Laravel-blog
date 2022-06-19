@@ -18,9 +18,4 @@ class CommentBuilder implements QueryBuilder
     {
         return Comment::with(['post', 'user'])->paginate(10);
     }
-
-    public function getCommentById(int $id): Model
-    {
-        return Comment::where('id', $id)->firstOrFail();
-    }
 }

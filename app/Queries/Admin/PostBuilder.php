@@ -19,11 +19,6 @@ class PostBuilder implements QueryBuilder
         return Post::with('category', 'tags')->paginate(5);
     }
 
-    public function getPostById(int $id): Model
-    {
-        return Post::where('id', $id)->firstOrFail();
-    }
-
     public function createPost(array $params): Model
     {
         return Post::create($params);
