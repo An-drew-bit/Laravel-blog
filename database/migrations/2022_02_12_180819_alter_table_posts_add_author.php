@@ -14,7 +14,7 @@ class AlterTablePostsAddAuthor extends Migration
     public function up()
     {
         Schema::table('posts', function (Blueprint $table) {
-            $table->string('author')->after('id');
+            $table->integer('user_id')->after('id');
         });
     }
 

@@ -14,7 +14,7 @@ class PostFactory extends Factory
     public function definition(): array
     {
         return [
-            'author' => $this->faker->name,
+            'user_id' => 1,
             'title' => ucfirst($this->faker->words(4, true)),
             'desc' => $this->faker->text,
             'content' => $this->faker->text,

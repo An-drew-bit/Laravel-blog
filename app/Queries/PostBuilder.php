@@ -20,4 +20,10 @@ class PostBuilder implements QueryBuilder
             ->orderByDesc('created_at')
             ->paginate(12);
     }
+
+    public function getPostBySlug(string $slug)
+    {
+        return Post::where('slug', $slug)
+            ->firstOrFail();
+    }
 }

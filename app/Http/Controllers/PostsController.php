@@ -2,21 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Comment;
-use App\Models\{Post, User};
+use App\Queries\PostBuilder;
 
 class PostsController extends Controller
 {
-    public function index($slug)
+    public function index(string $slug, PostBuilder $builder)
     {
-        $post = Post::where('slug', $slug)->firstOrFail();
+        $post = $builder->getPostBySlug($slug);
         $post->view += 1;
-
-        $comments = Comment::all();
-        $user = User::all();
 
         $post->update();
 
-        return view('front.posts.single', compact('post', 'comments', 'user'));
+        return view('front.posts.single', [
+            'post' => $post
+        ]);
     }
 }

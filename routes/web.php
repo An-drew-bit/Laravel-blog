@@ -3,7 +3,7 @@
 use App\Http\Controllers\{
     AboutController, CategoriesController, ContactController,
     HomeController, PostsController, TagsController,
-    SearchController
+    SearchController, CommentController as UserComment
 };
 use App\Http\Controllers\Auth\{
     AuthController, ForgotController, RegisterController,
@@ -68,7 +68,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
 });
 
 Route::group(['middleware' => 'auth'], function () {
-    Route::resource('/comments', CommentController::class);
+    Route::resource('/comments', UserComment::class)
+        ->names('front.comments');
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 });
 

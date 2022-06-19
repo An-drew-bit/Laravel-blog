@@ -25,7 +25,7 @@
                     <li class="date">{{ $post->getPostDate() }}</li>
                     <li class="byline">
                         By
-                        <a href="#0">{{ $post->author }}</a>
+                        <a href="#0">{{ $post->users->name }}</a>
                     </li>
                 </ul>
             </div>
@@ -45,55 +45,6 @@
                          srcset="{{ asset('assets/front/images/wheel-2000.jpg') }} 2000w, {{ asset('assets/front/images/wheel-1000.jpg') }} 1000w, images/wheel-500.jpg 500w"
                          sizes="(max-width: 2000px) 100vw, 2000px" alt="">
                 </p>
-
-                <h2>Large Heading</h2>
-
-                <p>Harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est
-                    eligendi optio cumque nihil impedit quo minus <a href="http://#">omnis voluptas assumenda est</a> id
-                    quod maxime placeat facere possimus, omnis dolor repellendus. Temporibus autem quibusdam et aut
-                    officiis debitis aut rerum necessitatibus saepe eveniet ut et.</p>
-
-                <blockquote><p>This is a simple example of a styled blockquote. A blockquote tag typically specifies a
-                        section that is quoted from another source of some sort, or highlighting text in your post.</p>
-                </blockquote>
-
-                <p>Odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti dolores et
-                    quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa. Aenean eu
-                    leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Nulla vitae elit libero, a
-                    pharetra augue laboris in sit minim cupidatat ut dolor voluptate enim veniam consequat occaecat
-                    fugiat in adipisicing in amet Ut nulla nisi non ut enim aliqua laborum mollit quis nostrud sed
-                    sed.</p>
-
-                <h3>Smaller Heading</h3>
-
-                <p>Dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa.
-                    Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Nulla vitae elit
-                    libero, a pharetra augue laboris in sit minim cupidatat ut dolor voluptate enim veniam consequat
-                    occaecat fugiat in adipisicing in amet Ut nulla nisi non ut enim aliqua laborum mollit quis nostrud
-                    sed sed.
-
-
-                <p>Odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti dolores et
-                    quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa.</p>
-
-                <ul>
-                    <li>Donec nulla non metus auctor fringilla.
-                        <ul>
-                            <li>Lorem ipsum dolor sit amet.</li>
-                            <li>Lorem ipsum dolor sit amet.</li>
-                            <li>Lorem ipsum dolor sit amet.</li>
-                        </ul>
-                    </li>
-                    <li>Donec nulla non metus auctor fringilla.</li>
-                    <li>Donec nulla non metus auctor fringilla.</li>
-                </ul>
-
-                <p>Odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti dolores et
-                    quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa. Aenean eu
-                    leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Nulla vitae elit libero, a
-                    pharetra augue laboris in sit minim cupidatat ut dolor voluptate enim veniam consequat occaecat
-                    fugiat in adipisicing in amet Ut nulla nisi non ut enim aliqua laborum mollit quis nostrud sed
-                    sed.</p>
 
                 <div class="entry__taxonomies">
                     <div class="entry__cat">
@@ -128,7 +79,7 @@
                     <div class="entry__author-about">
                         <h5 class="entry__author-name">
                             <span>Posted by</span>
-                            <a href="#0">{{ $post->author }}</a>
+                            <a href="#0">{{ $post->users->name }}</a>
                         </h5>
 
                         <div class="entry__author-desc">
@@ -167,8 +118,8 @@
             <div id="comments" class="row">
                 <div class="col-full">
 
-                    @if(count($post->comments))
-                        <h3 class="h2">{{ count($post->comments) }} Comments</h3>
+                    @if($post->comments->count())
+                        <h3 class="h2">{{ $post->comments->count() }} Comments</h3>
 
                         @foreach($post->comments as $comment)
                             <ol class="commentlist">
@@ -176,13 +127,17 @@
                             <li class="depth-1 comment">
 
                                 <div class="comment__avatar">
-                                    <img class="avatar" src="{{ asset("assets/front/images/avatars/{$user->find($comment->user_id)->avatar}") }}" alt="" width="50" height="50">
+                                    @if($post->users->avatar)
+                                        <img class="avatar" src="{{ Storage::url($post->users->avatar) }}" alt="" width="50" height="50">
+                                    @else
+                                        <img class="avatar" src="{{ asset('no-image.png') }}" alt="" width="50" height="50">
+                                    @endif
                                 </div>
 
                                 <div class="comment__content">
 
                                     <div class="comment__info">
-                                        <div class="comment__author">{{ $user->find($comment->user_id)->name }}</div>
+                                        <div class="comment__author">{{ $post->users->name }}</div>
 
                                         <div class="comment__meta">
                                             <div class="comment__time">{{ $comment->getPostDateSmall() }}</div>
@@ -211,12 +166,12 @@
                     <div id="respond" class="col-full">
                         <h3 class="h2">Add Comment</h3>
 
-                        <form name="contactForm" id="contactForm" method="post" action="{{ route('comments.store') }}"
+                        <form name="contactForm" id="contactForm" method="post" action="{{ route('front.comments.store') }}"
                               autocomplete="off">
                             @csrf
 
                             <fieldset>
-                                <input type="hidden" name="post_id" value="{{$post->id}}">
+                                <input type="hidden" name="post_id" value="{{ $post->id }}">
 
                                 <div class="form-field">
                                     <input name="title" id="cEmail" class="full-width" placeholder="Your Title*" value=""

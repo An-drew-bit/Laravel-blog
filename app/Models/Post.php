@@ -12,7 +12,12 @@ class Post extends Model
     use HasFactory;
     use Sluggable;
 
-    protected $fillable = ['author', 'title', 'desc', 'content', 'category_id', 'thumbnail'];
+    protected $fillable = ['user_id', 'title', 'desc', 'content', 'category_id', 'thumbnail'];
+
+    public function users()
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
 
     public function tags()
     {
