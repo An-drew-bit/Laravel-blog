@@ -15,7 +15,10 @@ use App\Http\Controllers\Admin\{
 };
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', HomeController::class)->name('home');
+Route::controller(HomeController::class)->group(function () {
+    Route::get('/', 'index')->name('home');
+    Route::post('/', 'subscribe')->name('subscribe');
+});
 
 Route::get('/article/{slug}', [PostsController::class, 'index'])->name('posts.single');
 Route::get('/category/{slug}', [CategoriesController::class, 'index'])->name('categories.single');

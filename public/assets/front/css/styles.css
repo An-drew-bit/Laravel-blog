@@ -5544,11 +5544,11 @@ footer [class*="s-footer__"] > .row [class*="col-"]:last-child {
   position: relative;
 }
 
-.s-footer__subscribe #mc-form {
+.s-footer__subscribe #mc-form2 {
   width: 100%;
 }
 
-.s-footer__subscribe #mc-form input[type="email"] {
+.s-footer__subscribe #mc-form2 input[type="email"] {
   width: 100%;
   height: 5.4rem;
   font-size: 1.5rem;
@@ -5560,49 +5560,49 @@ footer [class*="s-footer__"] > .row [class*="col-"]:last-child {
   border: none;
 }
 
-.s-footer__subscribe #mc-form input[type="email"]::-webkit-input-placeholder {
+.s-footer__subscribe #mc-form2 input[type="email"]::-webkit-input-placeholder {
 
   /* WebKit, Blink, Edge */
   color: #FFFFFF;
 }
 
-.s-footer__subscribe #mc-form input[type="email"]:-moz-placeholder {
+.s-footer__subscribe #mc-form2 input[type="email"]:-moz-placeholder {
 
   /* Mozilla Firefox 4 to 18 */
   color: #FFFFFF;
   opacity: 1;
 }
 
-.s-footer__subscribe #mc-form input[type="email"]::-moz-placeholder {
+.s-footer__subscribe #mc-form2 input[type="email"]::-moz-placeholder {
 
   /* Mozilla Firefox 19+ */
   color: #FFFFFF;
   opacity: 1;
 }
 
-.s-footer__subscribe #mc-form input[type="email"]:-ms-input-placeholder {
+.s-footer__subscribe #mc-form2 input[type="email"]:-ms-input-placeholder {
 
   /* Internet Explorer 10-11 */
   color: #FFFFFF;
 }
 
-.s-footer__subscribe #mc-form input[type="email"]::-ms-input-placeholder {
+.s-footer__subscribe #mc-form2 input[type="email"]::-ms-input-placeholder {
 
   /* Microsoft Edge */
   color: #FFFFFF;
 }
 
-.s-footer__subscribe #mc-form input[type="email"]::placeholder {
+.s-footer__subscribe #mc-form2 input[type="email"]::placeholder {
 
   /* Most modern browsers support this now. */
   color: #FFFFFF;
 }
 
-.s-footer__subscribe #mc-form input[type="email"].placeholder {
+.s-footer__subscribe #mc-form2 input[type="email"].placeholder {
   color: #FFFFFF !important;
 }
 
-.s-footer__subscribe #mc-form input[type=submit] {
+.s-footer__subscribe #mc-form2 input[type=submit] {
   position: absolute;
   top: 0;
   right: 0;
@@ -5615,14 +5615,14 @@ footer [class*="s-footer__"] > .row [class*="col-"]:last-child {
   line-height: 5rem;
 }
 
-.s-footer__subscribe #mc-form label {
+.s-footer__subscribe #mc-form2 label {
   color: #FFFFFF;
   font-family: "Nunito Sans", sans-serif;
   font-size: 1.3rem;
   padding: 0 2rem;
 }
 
-.s-footer__subscribe #mc-form label i {
+.s-footer__subscribe #mc-form2 label i {
   padding-right: 6px;
 }
 

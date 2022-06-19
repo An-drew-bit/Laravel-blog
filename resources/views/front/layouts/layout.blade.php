@@ -77,14 +77,14 @@
                         <li><a href="{{ route('standart') }}">Standard Post</a></li>
                     </ul>
                 </li>
-                
+
                 <li class="li_margin"><a href="{{ route('logout') }}" title="">Выйти</a></li>
             @endauth
-            
+
             @guest
                 <li><a href="{{ route('about') }}" title="">About</a></li>
                 <li><a href="{{ route('contact') }}" title="">Contact</a></li>
-                
+
                 <li class="li_margin"><a href="{{ route('login.create') }}" title="">Войти</a></li>
                 <li><a href="{{ route('register.create') }}" title="">Регистрация</a></li
             @endguest
@@ -180,16 +180,14 @@
                     enim exercitationem ipsam. Culpa consequatur occaecati.</p>
 
                 <div class="subscribe-form">
-                    @csrf
+                    <form id="mc-form2" action="{{ route('subscribe') }}" method="post" class="group">
+                        @csrf
 
-                    <form id="mc-form" class="group" novalidate="true">
-
-                        <input type="email" value="" name="EMAIL" class="email" id="mc-email"
-                               placeholder="Email Address" required="">
+                        <label for="email" class="visually-hidden"></label>
+                        <input type="email" class="email @error('email') is-invalid @enderror" name="email"
+                               placeholder="Email Address">
 
                         <input type="submit" name="subscribe" value="Send">
-
-                        <label for="mc-email" class="subscribe-message"></label>
 
                     </form>
                 </div>

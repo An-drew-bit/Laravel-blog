@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Queries\Admin\{CategoryBuilder, CommentBuilder, PostBuilder, TagBuilder};
+use App\Queries\PostBuilder as PostFrontBuilder;
 use App\Queries\Contracts\QueryBuilder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Pagination\Paginator;
@@ -23,6 +24,8 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(QueryBuilder::class, PostBuilder::class);
         $this->app->bind(QueryBuilder::class, TagBuilder::class);
         $this->app->bind(QueryBuilder::class, CommentBuilder::class);
+
+        $this->app->bind(QueryBuilder::class, PostFrontBuilder::class);
 
         // Services
     }
