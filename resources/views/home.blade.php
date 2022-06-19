@@ -102,10 +102,17 @@
 
                         <div class="item-entry" data-aos="zoom-in">
                             <div class="item-entry__thumb">
-                                <a href="{{ route('posts.single', ['slug' => $post->slug]) }}" class="item-entry__thumb-link">
-                                    <img src="{{ asset("uploads/{$post->thumbnail}") }}"
-                                         srcset="{{ asset("uploads/{$post->thumbnail_400}") }} 1x, {{ asset("uploads/{$post->thumbnail}") }} 2x" alt="">
-                                </a>
+                                @if($post->thumbnail)
+                                    <a href="{{ route('posts.single', ['slug' => $post->slug]) }}" class="item-entry__thumb-link">
+                                        <img src="{{ Storage::url($post->thumbnail) }}"
+                                             srcset="{{ Storage::url($post->thumbnail) }} 1x, {{ Storage::url($post->thumbnail) }} 2x" alt="">
+                                    </a>
+                                @else
+                                    <a href="{{ route('posts.single', ['slug' => $post->slug]) }}" class="item-entry__thumb-link">
+                                        <img src="{{ asset('no-image.png') }}"
+                                             srcset="{{ asset('no-image.png') }} 1x, {{ asset('no-image.png') }} 2x" alt="">
+                                    </a>
+                                @endif
                             </div>
 
                             <div class="item-entry__text">

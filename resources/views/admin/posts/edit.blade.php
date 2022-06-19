@@ -68,7 +68,11 @@
                             </div>
                         </div>
 
-                        <div><img src="{{ $post->getImage() }}" class="img-thumbnail w-25" alt=""></div>
+                        @if($post->thumbnail)
+                            <div><img src="{{ Storage::url($post->thumbnail) }}" class="img-thumbnail w-25" alt=""></div>
+                        @else
+                            <div><img src="{{ asset('no-image.png') }}" class="img-thumbnail w-25" alt=""></div>
+                        @endif
                     </div>
                 </div>
 

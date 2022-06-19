@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\PostRequest;
 use App\Queries\Admin\PostBuilder;
+use App\Services\Contracts\Upload;
 use App\Models\{Category, Post, Tag};
 
 class PostController extends Controller
@@ -47,9 +48,15 @@ class PostController extends Controller
         ]);
     }
 
-    public function update(PostRequest $request, Post $post)
+    public function update(PostRequest $request, Post $post, Upload $upload)
     {
-        $post->update($request->validated());
+        $validated = $request->validated();
+
+        if ($request->hasFile('thumbnail')) {
+            $validated['thumbnail'] = $upload->uploadImage($request->file('thumbnail'));
+        }
+
+        $post->update($validated);
 
         $post->tags()->sync($request->tags);
 

@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use AWS\CRT\HTTP\Request;
 use App\Models\{Category};
 
 class CategoriesController extends Controller

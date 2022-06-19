@@ -38,15 +38,6 @@ class Post extends Model
         ];
     }
 
-    public function getImage()
-    {
-        if (!$this->thumbnail) {
-            return asset("no-image.png");
-        }
-
-        return asset("uploads/{$this->thumbnail}");
-    }
-
     public function getPostDate()
     {
         return Carbon::parse($this->created_at)->format('F d, Y');
