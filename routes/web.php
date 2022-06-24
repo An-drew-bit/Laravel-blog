@@ -52,7 +52,11 @@ Route::controller(VerificationController::class)->group(function () {
 
 Route::get('/search', SearchController::class)->name('search');
 Route::get('/about', AboutController::class)->name('about');
-Route::get('/contact', ContactController::class)->name('contact');
+
+Route::controller(ContactController::class)->group(function () {
+    Route::get('/contact', 'index')->name('contact');
+    Route::post('/contact', 'contactForm')->name('contact.form');
+});
 
 Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
     Route::get('/', MainController::class)->name('admin.index');
@@ -70,6 +74,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
 Route::group(['middleware' => 'auth'], function () {
     Route::resource('/comments', UserComment::class)
         ->names('front.comments');
+
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 });
 

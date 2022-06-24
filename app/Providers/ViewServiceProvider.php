@@ -26,7 +26,6 @@ class ViewServiceProvider extends ServiceProvider
     public function boot(): void
     {
         View::composer('admin.layouts.layout', AppComposer::class);
-
         View::composer('front.layouts.layout', FrontComposer::class);
     }
 }

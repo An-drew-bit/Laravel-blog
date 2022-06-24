@@ -2,15 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\{Tag};
+use App\Models\Tag;
 
 class TagsController extends Controller
 {
-    public function index($slug)
+    public function index(Tag $tags, string $slug)
     {
-        $tag = Tag::where('slug', $slug)->firstOrFail();
-        $posts = $tag->posts()->with('category')->orderBy('id', 'desc')->paginate(8);
+        $tag = $tags->where('slug', $slug)->firstOrFail();
+        $posts = $tag->posts()->with('category')
+            ->orderByDesc('id')
+            ->paginate(8);
 
-        return view('front.tags.single', compact('tag','posts'));
+        return view('front.tags.single', [
+            'tag' => $tag,
+            'posts' => $posts
+        ]);
     }
 }

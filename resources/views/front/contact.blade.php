@@ -72,32 +72,36 @@
 
                 <h4>Get In Touch</h4>
 
-                <form name="cForm" id="cForm" class="contact-form" method="post" action="">
-                    @csrf
+                @if(auth()->user())
+                    <form name="cForm" id="cForm" class="contact-form" method="post" action="{{ route('contact.form') }}">
+                        @csrf
 
-                    <fieldset>
+                        <fieldset>
 
-                        <div>
-                            <input name="cName" id="cName" class="full-width" placeholder="Your Name*" value="" type="text">
-                        </div>
+                            <div>
+                                <input name="name" id="cName" class="full-width" placeholder="Your Name*" value="" type="text">
+                            </div>
 
-                        <div class="form-field">
-                            <input name="cEmail" id="cEmail" class="full-width" placeholder="Your Email*" value="" type="text">
-                        </div>
+                            <div class="form-field">
+                                <input name="email" id="cEmail" class="full-width" placeholder="Your Email*" value="" type="text">
+                            </div>
 
-                        <div class="form-field">
-                            <input name="cWebsite" id="cWebsite" class="full-width" placeholder="Website" value="" type="text">
-                        </div>
+                            <div class="form-field">
+                                <input name="website" id="cWebsite" class="full-width" placeholder="Website" value="" type="text">
+                            </div>
 
-                        <div class="message form-field">
-                            <textarea name="cMessage" id="cMessage" class="full-width" placeholder="Your Message*"></textarea>
-                        </div>
+                            <div class="message form-field">
+                                <textarea name="message" id="cMessage" class="full-width" placeholder="Your Message*"></textarea>
+                            </div>
 
-                        <button type="submit" class="submit btn btn--primary btn--large full-width">Send Message</button>
-
-                    </fieldset>
-                </form>
-
+                            <button type="submit" class="submit btn btn--primary btn--large full-width">Send Message</button>
+                        </fieldset>
+                    </form>
+                @else
+                    <div class="container text-center">
+                        <h2>Авторизируйтесь что бы отправить</h2>
+                    </div>
+                @endif
             </div>
         </div>
 

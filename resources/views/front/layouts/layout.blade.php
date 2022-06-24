@@ -78,13 +78,12 @@
                     </ul>
                 </li>
 
+                <li><a href="{{ route('about') }}" title="">About</a></li>
+                <li><a href="{{ route('contact') }}" title="">Contact</a></li>
                 <li class="li_margin"><a href="{{ route('logout') }}" title="">Выйти</a></li>
             @endauth
 
             @guest
-                <li><a href="{{ route('about') }}" title="">About</a></li>
-                <li><a href="{{ route('contact') }}" title="">Contact</a></li>
-
                 <li class="li_margin"><a href="{{ route('login.create') }}" title="">Войти</a></li>
                 <li><a href="{{ route('register.create') }}" title="">Регистрация</a></li
             @endguest

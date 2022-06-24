@@ -16,9 +16,9 @@ class HomeController extends Controller
         ]);
     }
 
-    public function subscribe(SubscribeRequest $request)
+    public function subscribe(User $user, SubscribeRequest $request)
     {
-        $user = User::where(['email' => $request->get('email')])->firstOrFail();
+        $user = $user->where(['email' => $request->get('email')])->firstOrFail();
         $formData = 'Вы успешно подписались на рассылку';
 
         dispatch(new SubscribeEmailJob($user, $formData));
