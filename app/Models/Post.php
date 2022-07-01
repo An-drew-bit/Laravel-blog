@@ -52,4 +52,9 @@ class Post extends Model
     {
         return Carbon::parse($this->created_at)->format('M d, Y');
     }
+
+    public function scopeLike($query, $search): mixed
+    {
+        return $query->where('title', 'LIKE', "%{$search}%");
+    }
 }

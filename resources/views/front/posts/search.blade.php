@@ -30,10 +30,10 @@
                                         <a href="{{ route('categories.single', ['slug' => $post->category->slug]) }}">{{ $post->category->title }}</a>
                                     </div>
 
-                                    <h1 class="item-entry__title"><a href="{{ route('standart') }}">{!! $post->desc !!}</a></h1>
+                                    <h1 class="item-entry__title"><a href="{{ route('front.posts.index') }}">{!! $post->desc !!}</a></h1>
 
                                     <div class="item-entry__date">
-                                        <a href="{{ route('standart') }}">
+                                        <a href="{{ route('front.posts.index') }}">
                                             {{ $post->getPostDate() }}
                                         </a>
                                     </div>

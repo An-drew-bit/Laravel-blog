@@ -2,21 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\SearchRequest;
 use App\Models\Post;
-use Illuminate\Http\Request;
 
 class SearchController extends Controller
 {
-    public function __invoke(Request $request)
+    public function __invoke(SearchRequest $request, Post $posts)
     {
-        $request->validate([
-            's' => 'required'
-        ]);
-
         $s = $request->s;
 
-        $posts = Post::where('title', 'LIKE', "%{$s}%")->with('category')->paginate(4);
-
-        return view('front.posts.search', compact('posts', 's'));
+        return view('front.posts.search', [
+            'posts' => $posts->like($s)
+                ->with('category')
+                ->paginate(4),
+            's' => $s
+        ]);
     }
 }

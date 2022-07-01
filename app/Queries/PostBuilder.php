@@ -2,9 +2,9 @@
 
 namespace App\Queries;
 
-use App\Models\Post;
+use App\Models\{Post, User};
 use App\Queries\Contracts\QueryBuilder;
-use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\{Builder, Model};
 use Illuminate\Pagination\LengthAwarePaginator;
 
 class PostBuilder implements QueryBuilder
@@ -25,5 +25,12 @@ class PostBuilder implements QueryBuilder
     {
         return Post::where('slug', $slug)
             ->firstOrFail();
+    }
+
+    public function createStandartPost(array $params): Model
+    {
+        $user = User::findOrFail(auth()->id());
+
+        return $user->posts()->create($params);
     }
 }

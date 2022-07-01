@@ -74,7 +74,7 @@
                     <ul class="sub-menu">
                         <li><a href="{{ route('video') }}">Video Post</a></li>
                         <li><a href="{{ route('audio') }}">Audio Post</a></li>
-                        <li><a href="{{ route('standart') }}">Standard Post</a></li>
+                        <li><a href="{{ route('front.posts.index') }}">Standard Post</a></li>
                     </ul>
                 </li>
 

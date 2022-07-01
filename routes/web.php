@@ -2,9 +2,10 @@
 
 use App\Http\Controllers\{
     AboutController, CategoriesController, ContactController,
-    HomeController, PostsController, TagsController,
-    SearchController, CommentController as UserComment
+    HomeController, TagsController, SearchController,
+    CommentController as UserComment
 };
+use App\Http\Controllers\Post\{PostsController, StandartPostController};
 use App\Http\Controllers\Auth\{
     AuthController, ForgotController, RegisterController,
     VerificationController
@@ -31,10 +32,6 @@ Route::get('/video', function () {
 Route::get('/audio', function () {
     return view('front.posts.audio');
 })->name('audio');;
-
-Route::get('/standart', function () {
-    return view('front.posts.standart');
-})->name('standart');
 
 Route::controller(VerificationController::class)->group(function () {
     Route::get('/email/verify', 'getVerifyForm')
@@ -74,6 +71,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
 Route::group(['middleware' => 'auth'], function () {
     Route::resource('/comments', UserComment::class)
         ->names('front.comments');
+    Route::resource('/articles', StandartPostController::class)
+        ->names('front.posts');
 
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 });

@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Post;
 
+use App\Http\Controllers\Controller;
 use App\Queries\PostBuilder;
 
 class PostsController extends Controller
