@@ -8,6 +8,14 @@
 {%project_folder%}: sail up -d
 {%project_folder%}: artisan migrate --seed
 ```
+
+### Для тестов
+```
+{%project_folder%}: cp ./env.testing.example ./.env.testing
+{%project_folder%}: php artisan config:cache --env=testing
+{%project_folder%}: php artisan --env=testing migrate --seed
+```
+
 ### Для локального запуска
 ```
 {%project_folder%}: php artisan serve

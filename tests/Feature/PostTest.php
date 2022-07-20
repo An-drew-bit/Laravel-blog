@@ -15,8 +15,8 @@ class PostTest extends TestCase
      */
     public function testCheckPostIndex()
     {
-        $response = $this->get(route('posts.single', ['slug' => 'minus-velit-sint-odit']));
+        $response = $this->get('/articles');
 
-        $response->assertStatus(200);
+        $response->assertRedirect();
     }
 }

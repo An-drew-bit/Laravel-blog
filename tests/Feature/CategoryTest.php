@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\Category;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
@@ -15,8 +16,14 @@ class CategoryTest extends TestCase
      */
     public function testCheckCategoryIndex()
     {
-        $response = $this->get(route('categories.single', ['slug' => 'ducimus-officia-quis-facilis']));
+        Category::factory()->create([
+            'id' => 11,
+            'title' => 'Test',
+            'slug' => 'test'
+        ]);
 
-        $response->assertStatus(200);
+        $response = $this->get('category/test');
+
+        $response->assertOk();
     }
 }

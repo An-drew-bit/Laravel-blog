@@ -2,8 +2,10 @@
 
 namespace Tests\Feature;
 
+use App\Models\Tag;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Support\Facades\DB;
 use Tests\TestCase;
 
 class TagTest extends TestCase
@@ -13,10 +15,29 @@ class TagTest extends TestCase
      *
      * @return void
      */
-    public function test_example()
+    public function testCheckTagPage()
     {
-        $response = $this->get(route('tags.single', ['slug' => 'dolores-nihil-dicta-recusandae']));
+        Tag::factory()->create([
+            'id' => 11,
+            'title' => 'Test',
+            'slug' => 'test'
+        ]);
 
-        $response->assertStatus(200);
+        $response = $this->get('/tag/test');
+
+        $response->assertOk();
+    }
+
+    public function testAddPostTagInPost()
+    {
+        DB::table('post_tag')->insert([
+            'id' => 41,
+            'tag_id' => 11,
+            'post_id' => 21
+        ]);
+
+        $response = $this->get('/tag/test');
+
+        $response->assertOk();
     }
 }
