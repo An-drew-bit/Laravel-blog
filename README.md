@@ -3,7 +3,8 @@
 ### Чистый запуск
 ```
 {%project_folder%}: cp ./env.example ./.env
-{%project_folder%}: composer.phar install
+{%project_folder%}: composer install
+{%project_folder%}: sail up -d
 {%project_folder%}: artisan migrate --seed
 ```
 ### Для локального запуска
