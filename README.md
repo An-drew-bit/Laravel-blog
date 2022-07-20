@@ -4,6 +4,7 @@
 ```
 {%project_folder%}: cp ./env.example ./.env
 {%project_folder%}: composer install
+{%project_folder%}: ./vendor/bin/sail up -d or alias sail='[ -f sail ] && bash sail || bash vendor/bin/sail'
 {%project_folder%}: sail up -d
 {%project_folder%}: artisan migrate --seed
 ```
