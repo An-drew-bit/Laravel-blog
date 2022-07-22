@@ -51,14 +51,12 @@
                                             <i class="fas fa-pencil-alt"></i>
                                         </a>
                                         @can('delete', $category)
-                                            <form action="{{ route('admin.category.destroy', ['category' => $category]) }}"
-                                                  method="post" class="float-left">
+                                            <form>
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="btn btn-danger btn-sm"
-                                                        onclick="return confirm('Подтвердите удаление')">
-                                                    <i
-                                                        class="fas fa-trash-alt"></i>
+
+                                                <button type="submit" class="btn btn-danger btn-sm" id="delete">
+                                                    <i class="fas fa-trash-alt"></i>
                                                 </button>
                                             </form>
                                         @endcan
@@ -79,4 +77,28 @@
         </div>
 
     </section>
+
+    <script>
+        $(document).ready(function () {
+            $("#delete").on("click", function(e) {
+
+                if(!confirm("Подтвердите удаление")) {
+                    return false;
+                }
+
+                e.preventDefault();
+
+                $.ajax({
+                    url: "{{ route('admin.category.destroy', ['category' => $category]) }}",
+                    type: 'DELETE',
+                    data: { _token: "{{ csrf_token() }}" },
+                    success: function () {
+                        $("tr").remove();
+                    }
+                });
+
+                return false;
+            });
+        });
+    </script>
 @endsection

@@ -35,10 +35,8 @@ class AuthTest extends TestCase
         $responce = $this->post('/register', [
             'name' => 'test',
             'email' => 'test@mail.com',
-            'email_verified_at' => now(),
-            'password' => bcrypt('test'),
-            'remember_token' => Str::random(10),
-            'is_admin' => 0,
+            'password' => 'test',
+            'password_confirmation' => 'test',
         ]);
 
         $this->assertDatabaseCount('users', 2);

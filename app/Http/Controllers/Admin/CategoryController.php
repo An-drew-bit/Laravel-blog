@@ -55,6 +55,8 @@ class CategoryController extends Controller
 
         $category->delete();
 
-        return redirect(route('admin.category.index'))->with('success', 'Категория успешно удалена');
+        return response()->json([
+            'success' => 'Категория успешно удалена',
+        ]);
     }
 }
