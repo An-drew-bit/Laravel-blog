@@ -16,14 +16,16 @@ class PostBuilder implements QueryBuilder
 
     public function getPostAllWithRelation(): LengthAwarePaginator
     {
-        return Post::with('category')
+        return $this->getBuilder()
+            ->with('category')
             ->orderByDesc('created_at')
             ->paginate(12);
     }
 
-    public function getPostBySlug(string $slug)
+    public function getPostBySlug(string $slug): Model
     {
-        return Post::where('slug', $slug)
+        return $this->getBuilder()
+            ->where('slug', $slug)
             ->firstOrFail();
     }
 

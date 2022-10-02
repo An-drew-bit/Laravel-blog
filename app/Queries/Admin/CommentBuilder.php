@@ -4,7 +4,7 @@ namespace App\Queries\Admin;
 
 use App\Models\Comment;
 use App\Queries\Contracts\QueryBuilder;
-use Illuminate\Database\Eloquent\{Builder, Model};
+use Illuminate\Database\Eloquent\{Builder};
 use Illuminate\Pagination\LengthAwarePaginator;
 
 class CommentBuilder implements QueryBuilder
@@ -16,6 +16,8 @@ class CommentBuilder implements QueryBuilder
 
     public function getCommentRelation(): LengthAwarePaginator
     {
-        return Comment::with(['post', 'user'])->paginate(10);
+        return $this->getBuilder()
+            ->with(['post', 'user'])
+            ->paginate(10);
     }
 }

@@ -12,7 +12,14 @@ class Post extends Model
 {
     use HasFactory, Sluggable;
 
-    protected $fillable = ['user_id', 'title', 'desc', 'content', 'category_id', 'thumbnail'];
+    protected $fillable = [
+        'user_id',
+        'title',
+        'desc',
+        'content',
+        'category_id',
+        'thumbnail'
+    ];
 
     public function users(): BelongsTo
     {

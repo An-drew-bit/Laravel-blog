@@ -16,11 +16,13 @@ class CategoryBuilder implements QueryBuilder
 
     public function getCategoryAll(): LengthAwarePaginator
     {
-        return Category::paginate(10);
+        return $this->getBuilder()
+            ->paginate(10);
     }
 
     public function createCategory(array $params): Model
     {
-        return Category::create($params);
+        return $this->getBuilder()
+            ->create($params);
     }
 }

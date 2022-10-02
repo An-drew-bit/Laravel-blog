@@ -16,11 +16,13 @@ class TagBuilder implements QueryBuilder
 
     public function getTagAll(): LengthAwarePaginator
     {
-        return Tag::paginate(5);
+        return $this->getBuilder()
+            ->paginate(5);
     }
 
     public function createTag(array $params): Model
     {
-        return Tag::create($params);
+        return $this->getBuilder()
+            ->create($params);
     }
 }
