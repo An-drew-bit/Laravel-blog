@@ -25,7 +25,7 @@ class SubscribeEmail extends Mailable
      *
      * @return $this
      */
-    public function build()
+    public function build(): SubscribeEmail
     {
         return $this->view('emails.subscribe')->with([
             'formData' => $this->formData

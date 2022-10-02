@@ -27,7 +27,7 @@ class SubscribeEmailJob implements ShouldQueue
      *
      * @return void
      */
-    public function handle()
+    public function handle(): void
     {
         Mail::to($this->user)->send(new SubscribeEmail($this->formData));
     }

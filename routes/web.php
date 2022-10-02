@@ -25,6 +25,7 @@ Route::get('/article/{slug}', [PostsController::class, 'index'])->name('posts.si
 Route::get('/category/{slug}', [CategoriesController::class, 'index'])->name('categories.single');
 Route::get('/tag/{slug}', [TagsController::class, 'index'])->name('tags.single');
 
+//временно
 Route::get('/video', function () {
     return view('front.posts.video');
 })->name('video');;

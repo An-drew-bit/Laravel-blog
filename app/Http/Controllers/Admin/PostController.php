@@ -7,6 +7,10 @@ use App\Http\Requests\Admin\PostRequest;
 use App\Queries\Admin\PostBuilder;
 use App\Services\Contracts\Upload;
 use App\Models\{Category, Post, Tag};
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\{Factory, View};
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Routing\Redirector;
 
 class PostController extends Controller
 {
@@ -15,14 +19,14 @@ class PostController extends Controller
         $this->authorizeResource(Post::class, 'post');
     }
 
-    public function index(PostBuilder $builder)
+    public function index(PostBuilder $builder): Application|Factory|View
     {
         return view('admin.posts.index', [
             'posts' => $builder->getPostAll()
         ]);
     }
 
-    public function create()
+    public function create(): Application|Factory|View
     {
         return view('admin.posts.create', [
             'categories' => Category::pluck('title', 'id')->all(),
@@ -30,7 +34,7 @@ class PostController extends Controller
         ]);
     }
 
-    public function store(PostRequest $request, PostBuilder $builder)
+    public function store(PostRequest $request, PostBuilder $builder): Application|RedirectResponse|Redirector
     {
         $post = $builder->createPost($request->validated());
 
@@ -39,7 +43,7 @@ class PostController extends Controller
         return redirect()->route('admin.posts.index')->with('success', 'Статья добавлена');
     }
 
-    public function edit(Post $post)
+    public function edit(Post $post): Application|Factory|View
     {
         return view('admin.posts.edit', [
             'categories' => Category::pluck('title', 'id')->all(),
@@ -48,7 +52,7 @@ class PostController extends Controller
         ]);
     }
 
-    public function update(PostRequest $request, Post $post, Upload $upload)
+    public function update(PostRequest $request, Post $post, Upload $upload): Application|RedirectResponse|Redirector
     {
         $validated = $request->validated();
 
@@ -63,7 +67,7 @@ class PostController extends Controller
         return redirect()->route('admin.posts.index')->with('success', 'Изменения сохранены');
     }
 
-    public function destroy(Post $post)
+    public function destroy(Post $post): Application|RedirectResponse|Redirector
     {
         $post->tags()->sync([]);
 

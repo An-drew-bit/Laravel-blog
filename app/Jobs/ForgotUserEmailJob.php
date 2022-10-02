@@ -27,7 +27,7 @@ class ForgotUserEmailJob implements ShouldQueue
      *
      * @return void
      */
-    public function handle()
+    public function handle(): void
     {
         Mail::to($this->user)->send(new ForgotPassword($this->password));
     }

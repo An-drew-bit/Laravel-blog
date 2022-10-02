@@ -25,7 +25,7 @@ class ContactForm extends Mailable
      *
      * @return $this
      */
-    public function build()
+    public function build(): ContactForm
     {
         return $this->view('emails.contactForm')->with([
             'formData' => $this->formData
