@@ -7,7 +7,7 @@
 
         <div class="row narrow">
             <div class="col-full s-content__header" data-aos="fade-up">
-                <h1 class="display-1 display-1--with-line-sep">Search: {{ $s }}</h1>
+                <h1 class="display-1 display-1--with-line-sep">Search: {{ $search }}</h1>
             </div>
         </div>
 
@@ -50,7 +50,7 @@
 
         <div class="row pagination-wrap">
             <div class="col-full">
-                {{ $posts->appends(['s' => request()->s])->links('vendor.pagination.paginate') }}
+                {{ $posts->appends(['s' => request()->search])->links('vendor.pagination.paginate') }}
             </div>
         </div>
 

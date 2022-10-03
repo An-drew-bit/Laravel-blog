@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
+use App\Queries\CategoryBuilder;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\{Factory, View};
 
 class CategoriesController extends Controller
 {
-    public function index(Category $categories, string $slug)
+    public function index(CategoryBuilder $builder, string $slug): Application|Factory|View
     {
-        $category = $categories->where('slug', $slug)->firstOrFail();
+        $category = $builder->getCategoryBySlug($slug);
         $posts = $category->posts()->orderByDesc('id')->paginate(8);
 
         return view('front.categories.single', [

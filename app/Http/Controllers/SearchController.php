@@ -9,13 +9,13 @@ class SearchController extends Controller
 {
     public function __invoke(SearchRequest $request, Post $posts)
     {
-        $s = $request->s;
+        $search = $request->search;
 
         return view('front.posts.search', [
-            'posts' => $posts->like($s)
+            'posts' => $posts->like($search)
                 ->with('category')
                 ->paginate(4),
-            's' => $s
+            'search' => $search
         ]);
     }
 }

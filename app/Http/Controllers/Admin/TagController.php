@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\TagRequest;
 use App\Models\Tag;
-use App\Queries\Admin\TagBuilder;
+use App\Queries\TagBuilder;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\{Factory, View};
 use Illuminate\Http\RedirectResponse;

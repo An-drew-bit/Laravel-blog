@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\PostRequest;
-use App\Queries\Admin\PostBuilder;
+use App\Queries\PostBuilder;
 use App\Services\Contracts\Upload;
 use App\Models\{Category, Post, Tag};
 use Illuminate\Contracts\Foundation\Application;

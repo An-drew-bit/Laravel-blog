@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Queries\Admin;
+namespace App\Queries;
 
 use App\Models\Comment;
 use App\Queries\Contracts\QueryBuilder;

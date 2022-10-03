@@ -14,6 +14,19 @@ class PostBuilder implements QueryBuilder
         return Post::query();
     }
 
+    public function getPostAll(): LengthAwarePaginator
+    {
+        return $this->getBuilder()
+            ->with('category', 'tags')
+            ->paginate(5);
+    }
+
+    public function createPost(array $params): Model
+    {
+        return $this->getBuilder()
+            ->create($params);
+    }
+
     public function getPostAllWithRelation(): LengthAwarePaginator
     {
         return $this->getBuilder()

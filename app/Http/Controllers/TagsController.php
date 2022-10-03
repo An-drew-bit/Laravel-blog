@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Tag;
+use App\Queries\TagBuilder;
 
 class TagsController extends Controller
 {
-    public function index(Tag $tags, string $slug)
+    public function index(TagBuilder $builder, string $slug)
     {
-        $tag = $tags->where('slug', $slug)->firstOrFail();
+        $tag = $builder->getTagBySlug($slug);
         $posts = $tag->posts()->with('category')
             ->orderByDesc('id')
             ->paginate(8);

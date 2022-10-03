@@ -4,10 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CommentRequest;
 use App\Models\Comment;
+use Illuminate\Http\RedirectResponse;
 
 class CommentController extends Controller
 {
-    public function store(CommentRequest $request, Comment $comment)
+    public function store(CommentRequest $request, Comment $comment): RedirectResponse
     {
         $comment->create([
             'user_id' => auth()->id(),
@@ -21,6 +22,6 @@ class CommentController extends Controller
 
     public function destroy()
     {
-
+        //
     }
 }
